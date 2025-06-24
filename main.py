@@ -26,7 +26,7 @@ def send_email(subject, content):
     
     try:
         api_response = api_instance.send_transac_email(send_smtp_email)
-        print("Email envoyé avec succès. ID:", api_response['messageId'])
+        print("Email envoyé avec succès. ID:", api_response.message_id)
     except ApiException as e:
         print("Exception lors de l'envoi de l'email:", e)
 
