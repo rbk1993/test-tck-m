@@ -1,0 +1,3 @@
+sendinblue-api-v3-sdk
+requests
+beautifulsoup4
