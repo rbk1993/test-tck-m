@@ -1,32 +1,38 @@
 import requests
 from bs4 import BeautifulSoup
-import smtplib
-from email.mime.text import MIMEText
 import os
+from sendinblue_api import SendinBlueApi
+from sendinblue_api.rest import ApiException
 
-URL = "https://webook.com/fr/explore?tag=football"
-KEYWORD = "CAN"
+URL = "https://www.cafonline.com/caf-africa-cup-of-nations/news/"
+KEYWORD = "tickets"
 
-EMAIL = os.environ.get("EMAIL")
-APP_PASSWORD = os.environ.get("APP_PASSWORD")
+API_KEY = os.environ.get("BREVO_API_KEY")
+TO_EMAIL = os.environ.get("EMAIL")
+FROM_EMAIL = os.environ.get("EMAIL")
 
-def send_email(subject, body):
-    msg = MIMEText(body)
-    msg["Subject"] = subject
-    msg["From"] = EMAIL
-    msg["To"] = EMAIL
+def send_email(subject, content):
+    configuration = SendinBlueApi.Configuration()
+    configuration.api_key['api-key'] = API_KEY
+    api_instance = SendinBlueApi.TransactionalEmailsApi(SendinBlueApi.ApiClient(configuration))
+    
+    send_smtp_email = SendinBlueApi.SendSmtpEmail(
+        to=[{"email": TO_EMAIL}],
+        sender={"email": FROM_EMAIL},
+        subject=subject,
+        text_content=content
+    )
+    
+    try:
+        api_response = api_instance.send_transac_email(send_smtp_email)
+        print("Email envoyé avec succès. ID:", api_response['messageId'])
+    except ApiException as e:
+        print("Exception lors de l'envoi de l'email:", e)
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        server.login(EMAIL, APP_PASSWORD)
-        server.send_message(msg)
+res = requests.get(URL)
+soup = BeautifulSoup(res.text, 'html.parser')
 
-try:
-    res = requests.get(URL, timeout=10)
-    soup = BeautifulSoup(res.text, 'html.parser')
-
-    if KEYWORD.lower() in soup.text.lower():
-        send_email("🎟️ CAN 2025 - Billets détectés !", f"Billets potentiels trouvés ici : {URL}")
-    else:
-        print("Rien détecté pour le moment.")
-except Exception as e:
-    print(f"Erreur pendant l'exécution : {e}")
+if KEYWORD.lower() in soup.text.lower():
+    send_email("🎟️ Billets CAN 2025 détectés !", f"Le mot-clé '{KEYWORD}' a été trouvé sur {URL}")
+else:
+    print("Pas encore disponible.")
