@@ -1,8 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import os
-from sendinblue_api import SendinBlueApi
-from sendinblue_api.rest import ApiException
+import sib_api_v3_sdk
 
 URL = "https://www.cafonline.com/caf-africa-cup-of-nations/news/"
 KEYWORD = "tickets"
@@ -12,11 +11,11 @@ TO_EMAIL = os.environ.get("EMAIL")
 FROM_EMAIL = os.environ.get("EMAIL")
 
 def send_email(subject, content):
-    configuration = SendinBlueApi.Configuration()
+    configuration = sib_api_v3_sdk.Configuration()
     configuration.api_key['api-key'] = API_KEY
-    api_instance = SendinBlueApi.TransactionalEmailsApi(SendinBlueApi.ApiClient(configuration))
+    api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
     
-    send_smtp_email = SendinBlueApi.SendSmtpEmail(
+    send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(
         to=[{"email": TO_EMAIL}],
         sender={"email": FROM_EMAIL},
         subject=subject,
