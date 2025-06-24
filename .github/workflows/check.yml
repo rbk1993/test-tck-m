@@ -21,6 +21,5 @@ jobs:
       - name: Run script
         env:
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
-          TO_EMAIL: ${{ secrets.BREVO_TO_EMAIL }}
-          FROM_EMAIL: ${{ secrets.BREVO_FROM_EMAIL }}
+          EMAIL: ${{ secrets.BREVO_EMAIL }}
         run: python main.py
