@@ -35,4 +35,5 @@ soup = BeautifulSoup(res.text, 'html.parser')
 if KEYWORD.lower() in soup.text.lower():
     send_email("🎟️ Billets CAN 2025 détectés !", f"Le mot-clé '{KEYWORD}' a été trouvé sur {URL}")
 else:
-    print("Pas encore disponible.")
+    send_email("Billets CAN non détectés", f"Le mot-clé '{KEYWORD}' n'a pas été trouvé sur {URL}")
+    #print("Billets CAN non détectés")
