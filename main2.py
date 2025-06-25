@@ -18,7 +18,7 @@ KEYWORDS = [
 BREVO_API_KEY = os.environ.get("BREVO_API_KEY")
 TO_EMAIL = os.environ.get("EMAIL")
 FROM_EMAIL = os.environ.get("EMAIL")
-TO_PHONE = os.environ.get("TO_PHONE")
+SMS_TO_PHONE = os.environ.get("SMS_TO_PHONE")
 SMS_SENDER = os.environ.get("SMS_SENDER")   # Exemple : "BREVO" ou numéro validé
 
 # Envoi d'un SMS via Brevo
@@ -29,7 +29,7 @@ def send_sms(message):
     api_instance = sib_api_v3_sdk.TransactionalSMSApi(sib_api_v3_sdk.ApiClient(configuration))
     sms_params = {
         "sender": SMS_SENDER,
-        "recipient": TO_PHONE,
+        "recipient": SMS_TO_PHONE,
         "content": message,
         "type": "transactional"
     }
