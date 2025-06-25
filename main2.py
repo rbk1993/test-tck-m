@@ -68,7 +68,7 @@ text = response.html.text.lower()
 found_keywords = [kw for kw in KEYWORDS if kw in text]
 
 if found_keywords:
-    message = f"🎟️ Mots-clés détectés ({', '.join(found_keywords)}) sur le site CAF: {URL}"
+    message = f"Mots-clés détectés ({', '.join(found_keywords)}) sur le site CAF: {URL}"
     print(message)
     send_sms(message)
 else:
