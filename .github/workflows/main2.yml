@@ -1,8 +1,8 @@
 name: Check tck
 
 on:
-  schedule:
-    - cron: '0 8 * * *'  # Tous les jours à 8h UTC
+  #schedule:
+  #  - cron: '0 8 * * *'  # Tous les jours à 8h UTC
   workflow_dispatch:      # Pour exécuter manuellement depuis l'UI GitHub
 
 jobs:
