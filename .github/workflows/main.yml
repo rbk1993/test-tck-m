@@ -2,9 +2,7 @@ name: Check tck (test!)
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 8 * * *"  # tous les jours à 8h UTC
-
+  
 jobs:
   check_billet:
     runs-on: ubuntu-latest
