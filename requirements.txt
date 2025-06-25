@@ -1,5 +1,4 @@
 requests-html
-lxml[html_clean]
+lxml
+lxml-html-clean
 sib-api-v3-sdk
-requests
-beautifulsoup4
