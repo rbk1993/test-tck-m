@@ -1,0 +1,38 @@
+name: Vérification billets CAN
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Tous les jours à 8h UTC
+  workflow_dispatch:      # Pour exécuter manuellement depuis l'UI GitHub
+
+jobs:
+  check_keywords:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du repo
+        uses: actions/checkout@v3
+
+      - name: Installer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Installer Chromium pour pyppeteer
+        run: sudo apt-get update && sudo apt-get install -y chromium-browser
+
+      - name: Installer les dépendances Python
+        run: pip install -r requirements.txt
+
+      - name: Définir les variables d’environnement
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          EMAIL: ${{ secrets.EMAIL }}
+        run: |
+          echo "Variables d'environnement chargées."
+
+      - name: Lancer le script
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          EMAIL: ${{ secrets.EMAIL }}
+        run: python main.py
