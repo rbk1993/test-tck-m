@@ -36,7 +36,7 @@ def send_sms(message):
 
     try:
         api_response = api_instance.send_transac_sms(sms_params)
-        print("SMS envoyé avec succès. ID:", api_response['messageId'])
+        print("SMS envoyé avec succès. ID:", api_response.message_id)
     except ApiException as e:
         print("Erreur lors de l'envoi du SMS:", e.body)
 
