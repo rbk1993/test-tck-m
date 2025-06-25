@@ -1,4 +1,5 @@
 requests-html
+lxml_html_clean
 sib-api-v3-sdk
 requests
 beautifulsoup4
