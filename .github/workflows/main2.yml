@@ -28,4 +28,6 @@ jobs:
         env:
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
           EMAIL: ${{ secrets.BREVO_EMAIL }}
+          SMS_TO_PHONE: ${{ secrets.BREVO_SMS_TO_PHONE }}
+          SMS_SENDER: ${{ secrets.BREVO_SMS_SENDER }}
         run: python main2.py
