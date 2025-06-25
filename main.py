@@ -10,7 +10,7 @@ KEYWORD = "tickets"
 
 API_KEY = os.environ.get("BREVO_API_KEY")
 TO_EMAIL = os.environ.get("EMAIL")
-FROM_EMAIL = "noreply@brevo.com"
+FROM_EMAIL = os.environ.get("EMAIL")
 
 def send_email(subject, content):
     configuration = Configuration()
