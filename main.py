@@ -6,7 +6,7 @@ from sib_api_v3_sdk.rest import ApiException
 from sib_api_v3_sdk.configuration import Configuration
 
 URL = "https://www.cafonline.com/caf-africa-cup-of-nations/news/"
-KEYWORDS = ["ticket", "tickets", "sale"]  # ✅ Liste de mots-clés
+KEYWORDS = ["ticket", "tickets", "sale", "bamey"]  # ✅ Liste de mots-clés
 
 API_KEY = os.environ.get("BREVO_API_KEY")
 TO_EMAIL = os.environ.get("EMAIL")
