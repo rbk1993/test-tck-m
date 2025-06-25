@@ -35,4 +35,4 @@ jobs:
         env:
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
           EMAIL: ${{ secrets.EMAIL }}
-        run: python main.py
+        run: python main2.py
