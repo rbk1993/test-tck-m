@@ -11,7 +11,7 @@ URL = "https://www.cafonline.com/caf-africa-cup-of-nations/news/"
 KEYWORDS = [
     "ticket", "tickets", "sale", "buy", "purchase",
     "available", "book", "ticketing", "admission", "access",
-    "launch"
+    "launch", "highli"
 ]
 
 # Clés et identifiants
